@@ -1,0 +1,13 @@
+# IDE Settings
+.vscode/
+.idea/
+
+# Config
+.secrets.*
+
+# Modules
+venv/
+
+# Cache
+__pycache__/
+
