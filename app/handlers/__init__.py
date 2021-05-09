@@ -1,5 +1,6 @@
 from aiogram.types import Message
-from app.config import dp, bot
+from app.config import dp, bot, session
+from app.models import User
 from typing import NoReturn
 
 

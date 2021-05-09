@@ -2,3 +2,4 @@ aiogram
 dynaconf
 monobank
 typing
+sqlalchemy
