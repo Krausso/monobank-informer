@@ -1,5 +1,6 @@
 aiogram
+alembic
 dynaconf
 monobank
-typing
 sqlalchemy
+typing
