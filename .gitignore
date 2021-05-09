@@ -1,13 +1,13 @@
 # IDE Settings
 .vscode/
 .idea/
-
 # Config
 .secrets.*
-
+# DB
+db.sqlite3
+*.db
 # Modules
 venv/
-
 # Cache
 __pycache__/
 
