@@ -6,7 +6,7 @@ from typing import NoReturn
 class User(Base):
     __tablename__ = "user"
     id = Column(Integer, primary_key=True)
-    token = Column(String(128), unique=True, default="")
+    api_token = Column(String(128), unique=True, default="")
     user_id = Column(Integer, unique=True)
 
     @classmethod
@@ -16,3 +16,9 @@ class User(Base):
             return False
 
         return True
+
+    @classmethod
+    def find_instance(cls, user_id):
+        found_user = session.query(cls).filter(cls.user_id == user_id).first()
+
+        return found_user
