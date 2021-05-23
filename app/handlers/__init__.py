@@ -1,5 +1,7 @@
-from aiogram.types import Message
 from typing import NoReturn
+
+from aiogram.types import Message
+
 from app.handlers import process_token, user_settings, user_info
 from app.config import dp, bot
 from app.models import User

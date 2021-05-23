@@ -1,6 +1,8 @@
-from sqlalchemy import Column, Integer, String
-from app.config import Base, session
 from typing import NoReturn
+
+from sqlalchemy import Column, Integer, String
+
+from app.config import Base, session
 
 
 class User(Base):
@@ -19,18 +21,15 @@ class User(Base):
         user_ids = list(map(lambda current_user: current_user.user_id, session.query(cls).all()))
         if user_id not in user_ids:
             return False
-
         return True
 
     @classmethod
     def find_instance(cls, user_id: int):
         found_user = session.query(cls).filter(cls.user_id == user_id).first()
-
         return found_user
 
     @classmethod
     def remove_token(cls, user_id: int) -> NoReturn:
         user = cls.find_instance(user_id)
         user.api_token = ''
-
         session.commit()

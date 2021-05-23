@@ -3,4 +3,3 @@ alembic
 dynaconf
 monobank
 sqlalchemy
-typing
