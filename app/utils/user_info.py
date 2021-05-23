@@ -3,6 +3,7 @@ from monobank import Client
 
 def get_info(token: str):
     full_info = Client(token).get_client_info()
+    
     needed_keys = ('balance', 'type')
     accounts = full_info['accounts']
     info = [{key: account.get(key) for key in needed_keys} for account in accounts]
