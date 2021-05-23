@@ -1,9 +1,11 @@
+from typing import NoReturn
+
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
+
 from app.config import dp, bot, session
 from app.models import User
-from typing import NoReturn
 
 
 class ProcessToken(StatesGroup):
@@ -11,19 +13,19 @@ class ProcessToken(StatesGroup):
 
 
 @dp.message_handler(commands='remove_token', state='*')
-async def _(msg: Message) -> NoReturn:
+async def remove_token(msg: Message) -> NoReturn:
     User.remove_token(msg.from_user.id)
     await msg.reply('Token has been removed successfully')
 
 
 @dp.message_handler(commands='set_token', state='*')
-async def _(msg: Message) -> NoReturn:
+async def set_token(msg: Message) -> NoReturn:
     await msg.reply('Enter your Mono API token')
     await ProcessToken.api_token.set()
 
 
 @dp.message_handler(content_types='text', state=ProcessToken.api_token)
-async def _(msg: Message, state: FSMContext):
+async def get_token(msg: Message, state: FSMContext):
     user = User.find_instance(msg.from_user.id)
     old_api_token = user.api_token[:]
 
