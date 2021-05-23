@@ -10,15 +10,27 @@ class User(Base):
     user_id = Column(Integer, unique=True)
 
     @classmethod
-    def exists(cls, user: int) -> NoReturn:
-        users = list(map(lambda current_user: current_user.user_id, session.query(cls).all()))
-        if user not in users:
+    def create_instance(cls, user_id: int) -> NoReturn:
+        session.add(cls(user_id))
+        session.commit()
+
+    @classmethod
+    def instance_exists(cls, user_id: int) -> bool:
+        user_ids = list(map(lambda current_user: current_user.user_id, session.query(cls).all()))
+        if user_id not in user_ids:
             return False
 
         return True
 
     @classmethod
-    def find_instance(cls, user_id):
+    def find_instance(cls, user_id: int):
         found_user = session.query(cls).filter(cls.user_id == user_id).first()
 
         return found_user
+
+    @classmethod
+    def remove_token(cls, user_id: int) -> NoReturn:
+        user = cls.find_instance(user_id)
+        user.api_token = ''
+
+        session.commit()
