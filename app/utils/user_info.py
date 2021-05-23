@@ -7,5 +7,5 @@ def get_info(token: str):
     accounts = full_info['accounts']
     info = [{key: account.get(key) for key in needed_keys} for account in accounts]
 
-    message_text = '\n'.join(list(map(lambda account: f'Type - {account["type"]}\nBalance - {account["balance"]}\n' if account["balance"] != 0 else '', info)))
+    message_text = '\n'.join(list(map(lambda account: f'Type - {account["type"]}\nBalance - {str(account["balance"])[:-2]}\n' if account["balance"] != 0 else '', info)))
     return message_text
