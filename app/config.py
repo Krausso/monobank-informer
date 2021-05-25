@@ -7,7 +7,7 @@ from aiogram import Bot, Dispatcher
 from dynaconf import Dynaconf
 
 settings: Dynaconf = Dynaconf(
-    env='development',
+    env='development',  # change to 'production' if production
     settings_files=['app/settings.toml', 'app/.secrets.toml'],
     environments=True
 )
